@@ -56,7 +56,11 @@ public class Hex : MonoBehaviour
     /// <returns></returns>
     public static Vector3 GetXYZPosition(int q, int r)
     {
-        return (q * Q_XY + r * R_XY) * size;
+        Vector3 posXYZ;
+        posXYZ.x = size * (3 / 2f * q);
+        posXYZ.z = size * (Mathf.Sqrt(3) / 2 * q + Mathf.Sqrt(3) * r);
+        posXYZ.y = 0;
+        return posXYZ;
     }
     /// <summary>
     /// Converts from UnityCoord to GridCoord

@@ -15,19 +15,10 @@ public class UnitMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Moving piece to centre of a clicked on tile.
         if(Input.GetButtonDown("Fire1"))
         {
-            Vector3 mousePos = Input.mousePosition;
-            Ray Neater = Camera.main.ScreenPointToRay(mousePos);
-            Plane planeGrid = new Plane(Vector3.up, 0);
-            if (!planeGrid.Raycast(Neater, out float distanceFloat))
-            {
-                return;
-            }
-            Vector3 worldPos = Neater.origin + Neater.direction * distanceFloat;
-            Vector3Int gameBoardPos = Hex.GetQRSPosition(worldPos.x, worldPos.z);
-            Vector3 Hexworldpos = Hex.GetXYZPosition(gameBoardPos.x, gameBoardPos.z);
-            Debug.Log($"worldpos: {worldPos}, gameboardpos {gameBoardPos}, Hexworldpos {Hexworldpos}");
+            Vector3 Hexworldpos = Userinput.MousePosToXYZ();
             transform.position = Hexworldpos;
         }
     }
