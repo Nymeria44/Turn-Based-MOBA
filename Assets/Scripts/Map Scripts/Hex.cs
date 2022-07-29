@@ -63,15 +63,13 @@ public class Hex : MonoBehaviour
     /// Converts from UnityCoord to GridCoord
     /// </summary>
     /// <param name="x"></param>
-    /// <param name="y"></param>
+    /// <param name="z"></param>
     /// <returns></returns>
-    public static Vector3Int GetQRSPosition(float x, float y)
+    public static Vector3Int GetQRSPosition(float x, float z)
     {
         Vector3 QRSNonRounded;
         QRSNonRounded.x = (2f / 3 * x) / size;
-        QRSNonRounded.y = (-1f / 3 * x + Mathf.Sqrt(3) / 3 * y) / size;
-        //QRSNonRounded.y = (Mathf.Sqrt(3) / 3 * x + (-1f / 3) * y) / size;
-        //QRSNonRounded.x = (2/3f * y) / size;
+        QRSNonRounded.y = (-1f / 3 * x + Mathf.Sqrt(3) / 3 * z) / size;
         QRSNonRounded.z = (-QRSNonRounded.x - QRSNonRounded.y);
         return CubeRound(QRSNonRounded);
     }
@@ -103,7 +101,7 @@ public class Hex : MonoBehaviour
         return new Vector3(center.x + size * Mathf.Cos(angleRad), center.y, center.z + size * Mathf.Sin(angleRad));
     }
     /// <summary>
-    /// 
+    /// adds two Vector3Int together
     /// </summary>
     /// <param name="a"></param>
     /// <param name="b"></param>

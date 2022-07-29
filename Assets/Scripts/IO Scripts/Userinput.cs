@@ -5,7 +5,7 @@ using UnityEngine;
 public class Userinput : MonoBehaviour
 {
     /// <summary>
-    /// 
+    /// Calculates the position of the mouse in cube coord
     /// </summary>
     /// <returns>Returns the QRS position of the hexagon clicked on</returns>
     public static Vector3Int MousePosToQRS ()
@@ -23,7 +23,10 @@ public class Userinput : MonoBehaviour
         Vector3 worldPos = mouseClickRay.origin + mouseClickRay.direction * distanceGridFromRay;
         return Hex.GetQRSPosition(worldPos.x, worldPos.z);
     }
-
+    /// <summary>
+    /// Calculates the X,Y,Z position of the center of the hexagon
+    /// </summary>
+    /// <returns></returns>
     public static Vector3 MousePosToXYZ()
     {
         Vector3Int QRSPos = MousePosToQRS();
