@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Functions and variables for hexagons
+/// Hexagon maths and variables
 /// </summary>
 public class Hex : MonoBehaviour
 {
@@ -30,12 +30,9 @@ public class Hex : MonoBehaviour
     /// vertical distance between two hex centres
     /// </summary>
     public static float verticalSpacing = height;
-
-    // Vectors for converting between unity's xyz and cubecoord (q,r,s)
-    static readonly Vector3 Q_XY = new Vector3(0, 0, Mathf.Sqrt(3));
-    static readonly Vector3 R_XY = new Vector3(1.5f, 0, Mathf.Sqrt(3) / 2);
-
-    //Array of vectors for calculating neibouring tiles
+    /// <summary>
+    /// Array of vectors for calculating neibouring tiles
+    /// </summary>
     static readonly Vector3Int[] FindNeighbourArray = { 
         new Vector3Int (1, 0, -1), 
         new Vector3Int (1, -1, 0), 
@@ -76,7 +73,20 @@ public class Hex : MonoBehaviour
         //QRSNonRounded.y = (Mathf.Sqrt(3) / 3 * x + (-1f / 3) * y) / size;
         //QRSNonRounded.x = (2/3f * y) / size;
         QRSNonRounded.z = (-QRSNonRounded.x - QRSNonRounded.y);
-        return new Vector3Int (Mathf.RoundToInt(QRSNonRounded.x), Mathf.RoundToInt(QRSNonRounded.y), Mathf.RoundToInt(QRSNonRounded.z));
+        return CubeRound(QRSNonRounded);
+    }
+    /// <summary>
+    /// Rounds CubeCoords
+    /// </summary>
+    /// <param name="unroundedCube"></param>
+    /// <returns></returns>
+    public static Vector3Int CubeRound (Vector3 unroundedCube)
+    {
+        Vector3Int roundedCube = new Vector3Int();
+        roundedCube.x = Mathf.RoundToInt(unroundedCube.x);
+        roundedCube.y = Mathf.RoundToInt(unroundedCube.y);
+        roundedCube.z = Mathf.RoundToInt(unroundedCube.z);
+        return roundedCube;
     }
     /// <summary>
     /// Finds a vertice of a hexagon
@@ -148,6 +158,45 @@ public class Hex : MonoBehaviour
         }
 
         return NeighbourTiles;
+    }
+    /// <summary>
+    /// Linear interpolation of floats for line drawing
+    /// </summary>
+    /// <param name="a"></param>
+    /// <param name="b"></param>
+    /// <param name="t"></param>
+    /// <returns></returns>
+    private static float FloatLerp(float a, float b, float t)
+    {
+        return a + (b - a) * t;
+    }
+    /// <summary>
+    /// Linear interpolation of cube coord for line drawing
+    /// </summary>
+    /// <param name="a">cube coords unrounded</param>
+    /// <param name="b">cube coords unrounded</param>
+    /// <param name="t"></param>
+    /// <returns></returns>
+    private static Vector3 CubeLerp(Vector3 a, Vector3 b, float t)
+    {
+        Vector3 CubeLerped = new Vector3();
+        CubeLerped.x = FloatLerp(a.x, b.x, t);
+        CubeLerped.y = FloatLerp(a.y, b.y, t);
+        CubeLerped.z = FloatLerp(a.z, b.z, t);
+        return CubeLerped;
+    }
+    /// <summary>
+    /// Draws a line between two hexagons
+    /// </summary>
+    public static Vector3Int[] DrawLine (Vector3Int a, Vector3Int b)
+    {
+        int N = Mathf.RoundToInt(CoordsDistance(a, b));
+        Vector3Int[] lineBetweenAB = new Vector3Int[Mathf.RoundToInt(N)];
+        for (int i = 0; i <= N; i++)
+        {
+            lineBetweenAB[i] = CubeRound(CubeLerp(a, b, 1.0f * N * i));
+        }
+        return lineBetweenAB;
     }
 }
 
