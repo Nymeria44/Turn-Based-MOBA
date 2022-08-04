@@ -96,18 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6140d84aeff851498d02ef1762a4578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 1
-  Q: 0
-  R: 0
-  S: 0
-  totalHP: 0
-  currentHP: 0
-  totalMP: 0
-  currentMP: 0
-  movespeed: 0
-  Exp: 0
-  LVL: 0
-  attackSpeed: 0
-  spellSpeed: 0
-  armour: 0
-  magicResist: 0
+  unitInfo: {fileID: 0}
+  lightMaterial: {fileID: 2100000, guid: b5a19b2be2f034c4a892e205b62b52c8, type: 2}
+  darkMaterial: {fileID: 2100000, guid: 039463fa509ddec4f8f62464f3decc3e, type: 2}

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11a843fa7d50a8c40adfb2e9252c1623, type: 3}
-  m_Name: P1H2
+  m_Name: P2H1
   m_EditorClassIdentifier: 
-  team: 1
+  team: 2
   Q: 0
-  R: 16
-  S: -16
+  R: -16
+  S: 16
   moveSpeed: 5
   currentHP: 0
   totalMP: 0
