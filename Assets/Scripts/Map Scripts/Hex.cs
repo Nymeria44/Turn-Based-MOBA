@@ -199,7 +199,6 @@ public class Hex : MonoBehaviour
 }
 
 
-
 /// <summary>
 /// Responsible for the dictionary of the gameboard
 /// </summary>
