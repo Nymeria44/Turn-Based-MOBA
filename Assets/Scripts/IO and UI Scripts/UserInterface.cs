@@ -20,7 +20,10 @@ public class UserInterface : MonoBehaviour
         Instance = this;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Used to display which teams turn it is on the UI
+    /// </summary>
+    /// <param name="turn"></param>
     public void ChangeTurnText (int turn)
     {
         if(turn == 1)
@@ -28,11 +31,13 @@ public class UserInterface : MonoBehaviour
             turnText.text = "Currently player one's turn";
         }
 
-        if (turn == 2)
+        else if (turn == 2)
         {
             turnText.text = "Currently player two's turn";
         }
-
-        turnText.text = TurnTracker.playerTurnText.text;
+        else
+        {
+            Debug.Log("This is what is causing the issue");
+        }
     }
 }

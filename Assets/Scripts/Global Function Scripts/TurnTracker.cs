@@ -6,7 +6,6 @@ using TMPro;
 public class TurnTracker : MonoBehaviour
 {
     public int playerTurn;
-    public static TextMeshProUGUI playerTurnText;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +18,7 @@ public class TurnTracker : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown("space"))
         {
             if (playerTurn == 1)
             {
@@ -27,7 +26,7 @@ public class TurnTracker : MonoBehaviour
                 UserInterface.Instance.ChangeTurnText(playerTurn);
             }
             
-            if (playerTurn == 2)
+            else if (playerTurn == 2)
             {
                 playerTurn = 1;
                 UserInterface.Instance.ChangeTurnText(playerTurn);

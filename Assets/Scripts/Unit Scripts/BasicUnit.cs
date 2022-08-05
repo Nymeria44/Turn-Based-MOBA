@@ -33,7 +33,7 @@ public class BasicUnit : MonoBehaviour
             GetComponent<MeshRenderer>().material = lightMaterial;
         }        
         
-        if (team == 2)
+        else if (team == 2)
         {
             GetComponent<MeshRenderer>().material = darkMaterial;
         }

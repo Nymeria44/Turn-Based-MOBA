@@ -15,7 +15,7 @@ public class UnitMovement : MonoBehaviour
             unitInfo.R = 16;
             unitInfo.S = -16;
         }
-        if (unitInfo.team == 2)
+        else if (unitInfo.team == 2)
         {
             unitInfo.Q = 0;
             unitInfo.R = -16;
